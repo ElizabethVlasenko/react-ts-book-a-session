@@ -1,17 +1,20 @@
 import { type ComponentPropsWithoutRef } from "react";
 import { Link } from "react-router-dom";
 
-type LinkProps = ComponentPropsWithoutRef<typeof Link> & {
-  to: string;
+type BaseProps = {
   textOnly?: boolean;
   children: React.ReactNode;
 };
 
-type ButtonProps = ComponentPropsWithoutRef<"button"> & {
-  to?: never;
-  textOnly?: boolean;
-  children: React.ReactNode;
-};
+type LinkProps = ComponentPropsWithoutRef<typeof Link> &
+  BaseProps & {
+    to: string;
+  };
+
+type ButtonProps = ComponentPropsWithoutRef<"button"> &
+  BaseProps & {
+    to?: never;
+  };
 
 function isLinkProps(props: ButtonProps | LinkProps): props is LinkProps {
   return "to" in props;
