@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { SESSIONS } from "../dummy-sessions.ts";
-import Button from "../components/Button.tsx";
+import Button from "../components/UI/Button.tsx";
 
 export default function SessionPage() {
   const params = useParams<{ id: string }>();
@@ -33,6 +33,7 @@ export default function SessionPage() {
             </time>
             <p>
               <Button>Book Session</Button>
+
               {/* Todo: Add button that opens "Book Session" dialog / modal */}
             </p>
           </div>
