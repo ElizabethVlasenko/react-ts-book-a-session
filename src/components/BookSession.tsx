@@ -23,7 +23,15 @@ export default function BookSession({ session, onDone }: BookSessionProps) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData);
+
+    if (!formData.get("name") || !formData.get("email")) {
+      return;
+    }
+
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+    };
 
     console.log(data);
     sessionCtx.bookSession(session);
@@ -34,8 +42,14 @@ export default function BookSession({ session, onDone }: BookSessionProps) {
     <Modal ref={modal} onClose={onDone}>
       <h2>Book Session</h2>
       <form onSubmit={handleSubmit}>
-        <Input label="Your name" id="name" name="name" type="text" />
-        <Input label="Your email" id="email" name="email" type="email" />
+        <Input label="Your name" id="name" name="name" type="text" required />
+        <Input
+          label="Your email"
+          id="email"
+          name="email"
+          type="email"
+          required
+        />
         <p className="actions">
           <Button type="button" textOnly onClick={onDone}>
             Cancel
