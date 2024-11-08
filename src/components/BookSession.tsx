@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useEffect, useRef } from "react";
 import Modal, { type ModalHandle } from "./UI/Modal";
 import Input from "./UI/Input";
 import { Session, useSessionsContext } from "../store/sessions-context";
@@ -12,6 +12,12 @@ type BookSessionProps = {
 export default function BookSession({ session, onDone }: BookSessionProps) {
   const modal = useRef<ModalHandle>(null);
   const sessionCtx = useSessionsContext();
+
+  useEffect(() => {
+    if (modal.current) {
+      modal.current.showModal();
+    }
+  }, []);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

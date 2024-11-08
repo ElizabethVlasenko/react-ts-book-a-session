@@ -54,10 +54,6 @@ ul {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
-dialog {
-  display: block;
-}
-
 .control {
   margin-bottom: 1rem;
 }
